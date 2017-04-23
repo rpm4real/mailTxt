@@ -13,8 +13,8 @@ import java.util.Properties;
 
 public class mailTxt {
 
-	public static String accountSid;
-  	public static String authToken;
+    public static String accountSid;
+    public static String authToken;
 
   	public static String targetNumber;
   	public static String twilioNumber;
@@ -29,7 +29,7 @@ public class mailTxt {
   		InputStream input = null; 
 
   		try {
-  			input = new FileInputStream("properties/appProperties.properties");
+  			input = new FileInputStream("../properties/appProperties.properties");
 
   			prop.load(input);
   			//twilio config
