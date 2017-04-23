@@ -1,5 +1,3 @@
-//package org.mano.imapexample;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
