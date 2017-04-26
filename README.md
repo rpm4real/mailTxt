@@ -19,5 +19,5 @@ The .jar for these libraries should be placed in `mailTxt/lib/`.
 
 
 ## Configuration
-The `properties/appPropertiesTemplate.properties` needs to be filled out with the appropriate configuration information. 
+The `properties/appPropertiesTemplate.properties` needs to be filled out with the appropriate configuration information, and renamed `appProperties.properties`.  
 
