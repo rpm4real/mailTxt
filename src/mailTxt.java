@@ -88,6 +88,7 @@ public class mailTxt {
     while (true) {
       System.out.println("Getting new messages...");
       ArrayList<MailPreview> previews = bean.getNewPreviews("imap", "imap.gmail.com", "993", emailAccount, emailPassword);
+      ArrayList<MailPreview> sentPreviews = new ArrayList<MailPreview>();
       for(MailPreview preview : previews) {
       //parse for email
         emailAddress = preview.getFromAddress();
@@ -95,6 +96,7 @@ public class mailTxt {
         emailAddress = emailAddress.substring(0,emailAddress.indexOf(">"));
         if (Arrays.asList(emailInputList).contains(emailAddress)) {
           smsTwilio(preview); 
+          sentPreviews.add(preview);
         }
       }
       TimeUnit.MINUTES.sleep(SLEEP_TIME);
