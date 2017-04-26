@@ -84,24 +84,24 @@ public class mailTxt {
 		loadProperties();
 
 		MailClient bean=new MailClient();
+    ArrayList<MailPreview> sentPreviews = new ArrayList<MailPreview>();
 
-    while (true) {
+    while (true) { //need the equivalent of "while alive"
       System.out.println("Getting new messages...");
       ArrayList<MailPreview> previews = bean.getNewPreviews("imap", "imap.gmail.com", "993", emailAccount, emailPassword);
-      ArrayList<MailPreview> sentPreviews = new ArrayList<MailPreview>();
       for(MailPreview preview : previews) {
       //parse for email
         emailAddress = preview.getFromAddress();
         emailAddress = emailAddress.substring(emailAddress.indexOf("<")+1);
         emailAddress = emailAddress.substring(0,emailAddress.indexOf(">"));
-        if (Arrays.asList(emailInputList).contains(emailAddress)) {
+        if (Arrays.asList(emailInputList).contains(emailAddress) && !sentPreviews.contains(preview)) {
           smsTwilio(preview); 
           sentPreviews.add(preview);
         }
       }
       TimeUnit.MINUTES.sleep(SLEEP_TIME);
-
-    } //need the equivalent of "while alive"
+      previews = null;
+    } 
 	}
 
 }
