@@ -13,6 +13,8 @@ import java.util.Properties;
 
 public class mailTxt {
 
+    public static final int SLEEP_TIME = 3;
+
     public static String accountSid;
     public static String authToken;
 
@@ -83,17 +85,21 @@ public class mailTxt {
 
 		MailClient bean=new MailClient();
 
-		System.out.println("Getting new messages...");
-		ArrayList<MailPreview> previews = bean.getNewPreviews("imap", "imap.gmail.com", "993", emailAccount, emailPassword);
-		for(MailPreview preview : previews) {
-			//parse for email
-			emailAddress = preview.getFromAddress();
-			emailAddress = emailAddress.substring(emailAddress.indexOf("<")+1);
-			emailAddress = emailAddress.substring(0,emailAddress.indexOf(">"));
-			if (Arrays.asList(emailInputList).contains(emailAddress)) {
-				smsTwilio(preview); 
-			}
-		}
+    while (true) {
+      System.out.println("Getting new messages...");
+      ArrayList<MailPreview> previews = bean.getNewPreviews("imap", "imap.gmail.com", "993", emailAccount, emailPassword);
+      for(MailPreview preview : previews) {
+      //parse for email
+        emailAddress = preview.getFromAddress();
+        emailAddress = emailAddress.substring(emailAddress.indexOf("<")+1);
+        emailAddress = emailAddress.substring(0,emailAddress.indexOf(">"));
+        if (Arrays.asList(emailInputList).contains(emailAddress)) {
+          smsTwilio(preview); 
+        }
+      }
+      TimeUnit.MINUTES.sleep(SLEEP_TIME);
+
+    } //need the equivalent of "while alive"
 	}
 
 }
