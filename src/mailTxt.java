@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import java.util.concurrent.TimeUnit;
 
 public class mailTxt {
 
@@ -77,7 +78,7 @@ public class mailTxt {
     	System.out.println(message.getSid());
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 
 		String emailAddress;
 
@@ -99,6 +100,7 @@ public class mailTxt {
           sentPreviews.add(preview);
         }
       }
+      System.out.println("Finished. Waiting...")
       TimeUnit.MINUTES.sleep(SLEEP_TIME);
       previews = null;
     } 
