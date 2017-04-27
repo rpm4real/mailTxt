@@ -16,5 +16,17 @@ public class MailPreview {
 		return fromSubject;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof MailPreview) {
+			MailPreview newO = (MailPreview) o;
+			if ( newO.getFromAddress().equals(this.fromAddress) && newO.getSubject().equals(this.fromSubject))
+				return true;
+			else 
+				return false;
+		}
+		else return false; 
+	}
+
 
 }

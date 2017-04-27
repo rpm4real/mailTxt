@@ -100,7 +100,7 @@ public class mailTxt {
           sentPreviews.add(preview);
         }
       }
-      System.out.println("Finished. Waiting...")
+      System.out.println("Finished. Previously sent on this run: "+ sentPreviews.size());
       TimeUnit.MINUTES.sleep(SLEEP_TIME);
       previews = null;
     } 
